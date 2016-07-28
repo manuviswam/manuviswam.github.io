@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<title>
+	Password hasher
+</title>
+<script type='text/javascript' src="http://ajax.googleapis.com/ajax/libs/jquery/1/jquery.min.js?ver=3.3"></script>	
+	<script src="js/sha256.js">/* SHA-256 JavaScript implementation */</script>
+	<script src="js/mtl.js">/* MTL utils */</script>
+    <script>
+        $(document).ready(function() {
+            // hash listener
+            $('#generate-hash').click( function() {
+                var t = new Date();
+                hash = Sha256.hash($('#message').val());
+                $('#hash').val(hash.substring(0,16));
+                $('#hash').select();
+                document.execCommand("copy");
+            });
+        });
+    </script>
+</head>
+
+<body>
+<form name="f">
+  <fieldset>
+  <legend>Enter any message to check its SHA-256 hash</legend>
+      <label for="message">Message</label>
+      <input type="password" name="message" id="message" class="width-full"></input>
+      </br>
+      <button type="button" name="generate-hash" id="generate-hash">Generate Hash and Copy</button>
+      </br>
+      <label for="message">Hash</label>
+      <input type="text" name="hash" id="hash" readonly class="width-full">
+  </fieldset>
+</form>
+</body>
+</html>
